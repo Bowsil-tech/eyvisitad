@@ -1,0 +1,448 @@
+<html>
+<head>
+  <base href="/">
+  <title>Etihad Airways</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <meta property="og:title" content="Etihad Flight Booking" />
+  
+
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/style.css">
+  
+</head>
+<body>
+
+
+    <section>
+      
+        <!-- <button id="button">mic</button>
+        <p id="recognizedText"></p> -->
+    </section>
+    
+    <script src="speech.js"></script>
+
+    
+    <script >
+        var speech = SpeechToText;
+        var activeSTT;
+    
+        function listen() {
+            activeSTT = speech.listen({
+                onStart: function() {
+                    console.log('onStart Speech event');
+                },
+                onResult: function(e) {
+                    console.log('onResult Speech event', e.text);
+                    document.getElementById("textInput").value = e.text;
+                    if (e.isFinal) {
+                        stopListening();
+                    }
+                },
+                onError: function(e) {
+                    console.log('onError Speech event', e);
+                },
+                onEnd: function(e) {
+                    console.log('onEnd Speech event', e);
+                    stopListening();
+                }
+            });
+        }
+    
+        function startListening() {
+            if (activeSTT) {
+                // do nothing, speech is active
+            } else if (speech.isSupported) {
+                listen();
+            } else {
+                alert('speech not supported by this browser');
+            }
+        }
+    
+        function stopListening() {
+            if (activeSTT) {
+                activeSTT.stop();
+                activeSTT = null;
+            }
+        }
+    
+       
+    
+    </script>
+<audio class="audio" id="a_player">Your browser does not support the audio element.</audio>
+  <div id="load"></div>
+    <style>
+      .body {font-family: 'Etihad Altis Book'}
+        .demo {
+          border:1px solid #C0C0C0;
+          border-collapse:collapse;
+          padding:5px;
+          width: 100%;
+          font-family: 'Etihad Altis Book', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 10pt;
+        }
+        .demo th {
+          border:1px solid #C0C0C0;
+         padding: 5px;
+          background:#F0F0F0;
+          font-family: 'Etihad Altis Book', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 10pt;
+        }
+        .demo td {
+          border:1px solid #C0C0C0;
+          padding: 5px;
+          font-family: 'Etihad Altis Book', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 10pt;
+          
+        }
+        .amee1
+        {
+
+          border-style: solid;
+  border: 1px border-style gray;
+  
+ 
+
+    font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+        .amee
+        {
+
+          border-style: solid;
+    border-bottom: thick dotted #E5A72C;
+  
+        }
+
+        *,
+*:before,
+*:after {
+   box-sizing: border-box;
+}
+form {
+  border: 1px solid #c6c7cc;
+  border-radius: 5px;
+  font: 14px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  overflow: hidden;
+  width: 100%;
+}
+
+.formTile
+{
+  border: 1px solid #c6c7cc;
+  border-radius: 5px;
+  font-size: 8pt;
+  overflow: hidden;
+  width: 100%;
+
+}
+
+
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+input {
+  border-radius: 5px;
+  font: 14px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 0;
+}
+.account-info {
+  padding: 10px 10px 0 10px;
+}
+
+#h1 {
+  color: #395870;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  font: 14px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+}
+.account-info label {
+  color: #395870;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.account-info input {
+  background: #fff;
+  border: 1px solid #c6c7cc;
+   box-shadow: inset 0 1px 1px rgba(109, 38, 38, 0.1);
+  color: #636466;
+  padding: 2px;
+  margin-top: 2px;
+  width: 100%;
+}
+.account-action {
+  background: #f0f0f2;
+  border-top: 1px solid #c6c7cc;
+  padding: 10px;
+  font-size: 10pt;
+}
+.account-action .btn {
+  background: linear-gradient(#E5A72C, #E5A72C);
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  float: left;
+  padding: 8px 16px;
+}
+.account-action label {
+  color: #7c7c80;
+  font-size: 12px;
+  float: left;
+  margin: 10px 0 0 20px;
+}
+
+
+#load{
+    width:100%;
+    height:100%;
+    position:fixed;
+    z-index:9999;
+    background:url("/img/LoadWave.gif") no-repeat center center rgba(0,0,0,0.25)
+}
+
+
+  .chat-window {
+    position: relative; }
+  
+    .chat-window--message-input {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      width: calc(100% - 37px);
+    }
+    .chat-window--microphone-button {
+      width: 24px;
+      /* height: 60px; */
+      /* padding: 19px 2px; */
+      cursor: pointer;
+      background-color: #E5A72C;
+      position: absolute;
+      right: 0;
+    }
+    .chat-window--microphone-button.active {
+      background-color: #d74108;
+    }
+
+      </style>
+      
+  <div id="view-change-button" class="button" onclick="PayloadPanel.togglePanel(event, this)" style="visibility:hidden">
+    <img class="option full" src="../img/Chat Button.png">
+    <img class="option not-full" src="../img/Code Button.png">
+  </div>
+  <div id="contentParent" class="responsive-columns-wrapper">
+    <div id="chat-column-holder" class="responsive-column content-column">
+      <div class="chat-column">
+        <div id="scrollingChat">
+
+
+        </div>
+        <div>
+
+          
+           
+
+
+
+        <label for="textInput" class="inputOutline"></label>
+
+
+			
+
+        <table class="chat-window" style="width:100%">
+          <tr>
+            <td> <input id="textInput"  class="chat-window--message-input base--text-input"
+              placeholder="Type something" type="text"
+              onkeydown="ConversationPanel.inputKeyDown(event, this)"></td>
+            <td>
+
+                <div id="button">
+                    <img class="chat-window--microphone-button" src="img/microphone.svg" alt="Record via Microphone" />
+                  </div>
+            </td>
+         
+           
+        </tr>
+        </table>
+         </label>
+      </div>
+      </div>
+    </div>
+
+    <div id="payload-column" class="fixed-column content-column" style="display: none;" >
+      <div id="payload-initial-message">
+        Type something to see the output
+      </div>
+
+
+
+    
+      <div id="payload-request" class="payload" style="display:false" >
+       
+
+      </div>
+      <div id="payload-response" class="payload" style="display:false"></div>
+    </div>
+  </div>
+
+ <!--
+  <button id='button1' onclick="ConversationPanel.togglePanelA(event, Getval())" style="display:false"> Test </button> -->
+  <script src="js/JSONPath.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/conversation.js"></script>
+  <script src="js/payload.js"></script>
+  <script src="js/global.js"></script>
+  <script src="js/common.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">  </script>
+  <script src="js/jquery-3.1.0.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/watson-speech.js"></script>
+  <script src="js/z2c-speech.js"></script>
+
+
+
+
+
+<script>
+
+
+function callDetail()
+
+{
+  conversation.a();
+  //alert(val);
+alert('hi');
+  
+}
+
+
+    $(document).ready(function () {
+
+
+      document.querySelector('#button').onclick = startListening;
+ 
+      var ameen = document.getElementsByClassName("payload-initial-message");
+        $("#btnName").click(function () {
+      
+         
+        });
+
+       
+
+
+       
+    });
+
+    
+function Getval()
+{
+ conversation.a();
+  return "Funny Joke";
+}
+
+
+
+document.onreadystatechange = function () {
+  var state = document.readyState
+  if (state == 'complete') {
+      setTimeout(function(){
+          document.getElementById('interactive');
+         document.getElementById('load').style.visibility="hidden";
+      },1000);
+  }
+}
+$(function() {
+
+var totWidth = 0;
+var positions = new Array();
+
+$('.item').each(function(i) {
+    
+    positions[i] = totWidth;
+    totWidth += $(this).outerWidth();
+
+    if (!$(this).width()) {
+        alert("Please, fill in width & height for all your images!");
+        return false;
+    }
+});
+
+$('#items').css({ width: totWidth + 'px' });
+});
+    </script>
+
+<style amp-custom>
+    @font-face {
+      font-family: "Bitstream Vera Serif Bold";
+      src: url("fonts/Etihad Altis Book.otf");
+    }
+  
+    body {
+      font-family: "Bitstream Vera Serif Bold", serif;
+    }
+
+
+    #scroll {
+width:600px;
+
+
+overflow:auto;
+
+}
+#scroll ul {
+display:table;
+white-space:nowrap;
+list-style:none;
+}
+#scroll li {
+display:table-cell; 
+text-align:center;  
+width:100px;
+   }
+#scroll img {
+border:0;
+display:block;
+
+}
+#scroll a:active img, #scroll a:focus img, #scroll a:hover img {
+}
+#scroll a {
+text-decoration:none;
+font-weight:bold;
+color:#000;
+}
+
+#scroll a:active, #scroll a:focus, #scroll a:hover {
+color:#E5A72C;
+}
+#scroll span {
+padding:5px 0 0;
+display:block;
+}
+
+
+.spandiv { 
+    display:block;
+    width:150px;
+    word-wrap:break-word;
+}
+
+li span{
+    display:block;
+    width:50px;
+    word-break:break-all;
+}
+  </style>
+
+
+<script>
+ 
+</script>
+</body>
+</html>

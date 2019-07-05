@@ -1,0 +1,4 @@
+applications:
+ - name: visitad
+   route: visitad
+   memory: 512M
